@@ -1,0 +1,256 @@
+1. Single Responsibility Principle (SRP)
+Principle: A class should have only one reason to change.
+
+Pseudocode Example:
+
+pseudo
+// Before SRP
+class OrderService {
+    function processOrder(order) {
+        // Process order
+    }
+    function generateInvoice(order) {
+        // Generate invoice for the order
+    }
+    function sendEmailConfirmation(order) {
+        // Send email confirmation to customer
+    }
+}
+
+// After SRP
+class OrderService {
+    function processOrder(order) {
+        // Process order
+    }
+}
+
+class InvoiceGenerator {
+    function generateInvoice(order) {
+        // Generate invoice for the order
+    }
+}
+
+class EmailSender {
+    function sendEmailConfirmation(order) {
+        // Send email confirmation to customer
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+2. Open/Closed Principle (OCP)
+Principle: A class should be open for extension, but closed for modification.
+
+Pseudocode Example:
+
+pseudo
+
+// Before OCP
+
+// PaymentProcessor class before following OCP
+class PaymentProcessor {
+    function processPayment(paymentType, amount) {
+        if paymentType == "CreditCard" {
+            // Process credit card payment
+        } else if paymentType == "PayPal" {
+            // Process PayPal payment
+        } else if paymentType == "BankTransfer" {
+            // Process bank transfer payment
+        }
+    }
+}
+
+
+// After OCP - You can extend new shapes without modifying existing code.
+
+// Create an abstraction (PaymentMethod interface)
+interface PaymentMethod {
+    function processPayment(amount)
+}
+
+// Implement the CreditCard payment method
+class CreditCard implements PaymentMethod {
+    function processPayment(amount) {
+        // Process credit card payment
+    }
+}
+
+// Implement the PayPal payment method
+class PayPal implements PaymentMethod {
+    function processPayment(amount) {
+        // Process PayPal payment
+    }
+}
+
+// Implement the BankTransfer payment method
+class BankTransfer implements PaymentMethod {
+    function processPayment(amount) {
+        // Process bank transfer payment
+    }
+}
+
+// The PaymentProcessor class now relies on the abstraction (PaymentMethod)
+class PaymentProcessor {
+    function processPayment(paymentMethod, amount) {
+        paymentMethod.processPayment(amount) // Delegate the processing to the specific payment method
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+3. Liskov Substitution Principle (LSP)
+Principle: Subtypes must be substitutable for their base types without altering the correctness of the program.
+In simple words, the child classes should not narrow down the functionality of the parent class, instead it should add the functionality.
+
+Pseudocode Example:
+
+pseudo
+Copy
+// Before LSP (Violation)
+class Bird {
+    function fly() {
+        // Fly
+    }
+}
+
+class Penguin extends Bird {
+    function fly() {
+        // Penguins cannot fly, so this breaks the LSP
+    }
+}
+
+// After LSP (Correct)
+class Bird {
+    function move() {
+        // Birds move
+    }
+}
+
+class Sparrow extends Bird {
+    function move() {
+        // Sparrows fly
+    }
+}
+
+class Penguin extends Bird {
+    function move() {
+        // Penguins swim
+    }
+}
+
+function letBirdFly(bird) {
+    bird.move() // It can be a Sparrow or Penguin without issue
+}
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+4. Interface Segregation Principle (ISP)
+Principle: Clients should not be forced to implement interfaces they don't use.
+
+Pseudocode Example:
+
+pseudo
+Copy
+// Before ISP (Large interface)
+interface Printer {
+    function print()
+    function scan()
+    function fax()
+}
+
+class MultiFunctionPrinter implements Printer {
+    function print() {
+        // Print
+    }
+    function scan() {
+        // Scan
+    }
+    function fax() {
+        // Fax
+    }
+}
+
+class SimplePrinter implements Printer {
+    function print() {
+        // Print
+    }
+    function scan() { }  // Doesn't need scanning
+    function fax() { }    // Doesn't need faxing
+}
+
+// After ISP (Smaller interfaces)
+interface Printer {
+    function print()
+}
+
+interface Scanner {
+    function scan()
+}
+
+interface FaxMachine {
+    function fax()
+}
+
+class MultiFunctionPrinter implements Printer, Scanner, FaxMachine {
+    function print() {
+        // Print
+    }
+    function scan() {
+        // Scan
+    }
+    function fax() {
+        // Fax
+    }
+}
+
+class SimplePrinter implements Printer {
+    function print() {
+        // Print
+    }
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------
+5. Dependency Inversion Principle (DIP)
+Principle: High-level modules should not depend on low-level modules. Both should depend on abstractions.
+In simple words, classes should depend on the interfaces rather than the concrete classes.
+
+Pseudocode Example:
+
+pseudo
+// Before DIP (High-level depends on low-level directly)
+class FileManager {
+    function readFile() {
+        file = openFile("data.txt") // Low-level module
+        // Process file
+    }
+}
+
+// After DIP (Use abstractions)
+interface FileReader {
+    function read()
+}
+
+class TextFileReader implements FileReader {
+    function read() {
+        file = openFile("data.txt") // Low-level module
+        // Process file
+    }
+}
+
+class FileManager {
+    FileReader fileReader
+
+    constructor(FileReader fileReader) {
+        this.fileReader = fileReader
+    }
+
+    function processFile() {
+        this.fileReader.read()
+    }
+}
+
+textFileReader = new TextFileReader()
+fileManager = new FileManager(textFileReader)
+fileManager.processFile() // High-level module depends on abstraction (FileReader)

@@ -7,24 +7,24 @@ interface CarFactory {
 }
 
 // Concrete Factory for North America Cars
-class NorthAmericaCarFactory implements CarFactory {
+class TataCarFactory implements CarFactory {
     public Car createCar() {
-        return new Sedan();
+        return new TataCar();
     }
 
     public CarSpecification createSpecification() {
-        return new NorthAmericaSpecification();
+        return new TataCarSpecification();
     }
 }
 
 // Concrete Factory for Europe Cars
-class EuropeCarFactory implements CarFactory {
+class ToyotaCarFactory implements CarFactory {
     public Car createCar() {
-        return new Hatchback();
+        return new ToyotaCar();
     }
 
     public CarSpecification createSpecification() {
-        return new EuropeSpecification();
+        return new ToyotaCarSpecification();
     }
 }
 
@@ -39,30 +39,30 @@ interface CarSpecification {
 }
 
 // Concrete Product for Sedan Car
-class Sedan implements Car {
+class TataCar implements Car {
     public void assemble() {
-        System.out.println("Assembling Sedan car.");
+        System.out.println("Assembling Tata car.");
     }
 }
 
 // Concrete Product for Hatchback Car
-class Hatchback implements Car {
+class ToyotaCar implements Car {
     public void assemble() {
-        System.out.println("Assembling Hatchback car.");
+        System.out.println("Assembling Toyota car.");
     }
 }
 
 // Concrete Product for North America Car Specification
-class NorthAmericaSpecification implements CarSpecification {
+class TataCarSpecification implements CarSpecification {
     public void display() {
-        System.out.println("North America Car Specification: Safety features compliant with local regulations.");
+        System.out.println("Tata Car Specification: Safety features compliant with local regulations.");
     }
 }
 
 // Concrete Product for Europe Car Specification
-class EuropeSpecification implements CarSpecification {
+class ToyotaCarSpecification implements CarSpecification {
     public void display() {
-        System.out.println("Europe Car Specification: Fuel efficiency and emissions compliant with EU standards.");
+        System.out.println("Toyota Car Specification: Fuel efficiency and emissions compliant with great standards.");
     }
 }
 
@@ -71,19 +71,19 @@ class EuropeSpecification implements CarSpecification {
 public class AbstractCarFactory {
     public static void main(String[] args) {
         // Creating cars for North America
-        CarFactory northAmericaFactory = new NorthAmericaCarFactory();
-        Car northAmericaCar = northAmericaFactory.createCar();
-        CarSpecification northAmericaSpec = northAmericaFactory.createSpecification();
+        CarFactory tataCarFactory = new TataCarFactory();
+        Car tataCarFactoryCar = tataCarFactory.createCar();
+        CarSpecification tataCarFactorySpecification = tataCarFactory.createSpecification();
 
-        northAmericaCar.assemble();
-        northAmericaSpec.display();
+        tataCarFactoryCar.assemble();
+        tataCarFactorySpecification.display();
 
         // Creating cars for Europe
-        CarFactory europeFactory = new EuropeCarFactory();
-        Car europeCar = europeFactory.createCar();
-        CarSpecification europeSpec = europeFactory.createSpecification();
+        CarFactory toyotaCarFactory = new ToyotaCarFactory();
+        Car toyotaCarFactoryCar = toyotaCarFactory.createCar();
+        CarSpecification toyotaCarFactorySpecification = toyotaCarFactory.createSpecification();
 
-        europeCar.assemble();
-        europeSpec.display();
+        toyotaCarFactoryCar.assemble();
+        toyotaCarFactorySpecification.display();
     }
 }
