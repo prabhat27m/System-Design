@@ -1,4 +1,4 @@
-package LLD.DesignPatterns;
+package LLD.DesignPatterns.AbstractFactory;
 
 // Abstract Factory Interface for Vehicle
 interface VehicleFactory {

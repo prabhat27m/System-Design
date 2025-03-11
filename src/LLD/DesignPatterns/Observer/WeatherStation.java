@@ -65,6 +65,7 @@ public class WeatherStation {
 
         // Update again - only phone display will be notified
         weatherStation.setTemperature(26.5f);
+
     }
 
 }

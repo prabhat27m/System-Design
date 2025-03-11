@@ -1,4 +1,4 @@
-package LLD.DesignPatterns;
+package LLD.DesignPatterns.AbstractFactory;
 
 
 interface CarFactory {
