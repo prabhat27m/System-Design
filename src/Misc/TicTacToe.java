@@ -19,18 +19,6 @@ class PlayingPiece {
     }
 }
 
-class PlayingPieceX extends PlayingPiece {
-    public PlayingPieceX() {
-        super(PieceType.X);
-    }
-}
-
-class PlayingPieceO extends PlayingPiece {
-    public PlayingPieceO() {
-        super(PieceType.O);
-    }
-}
-
 class Board {
     private PlayingPiece[][] board;
     private int size;
@@ -152,8 +140,10 @@ public class TicTacToe {
 
     public TicTacToe(int size) {
         board = new Board(size);
-        player1 = new Player("Player 1", new PlayingPieceX());
-        player2 = new Player("Player 2", new PlayingPieceO());
+        PlayingPiece pieceX = new PlayingPiece(PieceType.X);
+        player1 = new Player("Player 1", pieceX);
+        PlayingPiece pieceO = new PlayingPiece(PieceType.O);
+        player2 = new Player("Player 2", pieceO);
         currentPlayer = player1;
     }
 
