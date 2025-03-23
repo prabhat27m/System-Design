@@ -254,3 +254,46 @@ class FileManager {
 textFileReader = new TextFileReader()
 fileManager = new FileManager(textFileReader)
 fileManager.processFile() // High-level module depends on abstraction (FileReader)
+
+
+
+
+==========================================================================================================
+# Why We Should Follow SOLID Principles
+
+Here are the reasons for following each SOLID principle in the simplest way possible:
+
+## 1. Single Responsibility Principle (SRP)
+- Makes code easier to understand since each class does just one thing
+- Easier to maintain because changes to one feature won't affect others
+- Easier to test since you can test each responsibility separately
+- Reduces bugs by limiting the impact of changes
+- Makes code more reusable as specialized components can be used in different contexts
+
+## 2. Open/Closed Principle (OCP)
+- Allows adding new features without changing existing code
+- Reduces risk of breaking working code
+- Makes code more stable and reliable over time
+- Saves time by avoiding the need to modify and retest existing code
+- Makes your codebase more adaptable to future requirements
+
+## 3. Liskov Substitution Principle (LSP)
+- Ensures child classes can replace parent classes without breaking functionality
+- Makes polymorphism work correctly
+- Prevents unexpected behavior when using inheritance
+- Creates more reliable and predictable code
+- Enables code reuse through inheritance
+
+## 4. Interface Segregation Principle (ISP)
+- Prevents classes from implementing methods they don't need
+- Creates more focused and cohesive interfaces
+- Makes the system more flexible and adaptable
+- Reduces dependencies between components
+- Makes code easier to understand and maintain
+
+## 5. Dependency Inversion Principle (DIP)
+- Makes code more flexible by depending on abstractions instead of concrete implementations
+- Enables easier testing through dependency injection
+- Reduces coupling between components
+- Makes the system more modular and easier to change
+- Facilitates replacement of components without affecting the rest of the system
